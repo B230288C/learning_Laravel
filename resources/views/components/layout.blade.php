@@ -103,7 +103,7 @@
     <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8 sm:flex sm:justify-between"> 
       <h1 class="text-3xl font-bold tracking-tight text-white">{{$heading}}</h1>
 
-      <a href="/jobs/create" class="text-white border-2 border-red-800 px-2 py-1 rounded-lg">Create Job</a>
+      <x-button href="jobs/create">Create Job</x-button>
     </div>
   </header>
   <main>
