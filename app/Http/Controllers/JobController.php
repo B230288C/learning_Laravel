@@ -2,12 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\Job;
-use App\Models\User;
 use App\Mail\JobPosted;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Gate;
+use App\Models\Job;
 use Illuminate\Support\Facades\Mail;
 
 class JobController extends Controller
@@ -18,7 +14,7 @@ class JobController extends Controller
         $jobs = Job::with('employer')->latest()->paginate(3);
 
         return view('jobs.index', [
-        'jobs' => $jobs
+            'jobs' => $jobs,
         ]);
     }
 
@@ -35,14 +31,14 @@ class JobController extends Controller
     public function store()
     {
         request()->validate([
-            'title' => ['required','min:3'],
-            'salary' => ['required']
+            'title' => ['required', 'min:3'],
+            'salary' => ['required'],
         ]);
 
         $job = Job::create([
             'title' => request('title'),
             'salary' => request('salary'),
-            'employer_id' => 11
+            'employer_id' => 11,
         ]);
 
         Mail::to($job->employer->user)->queue(
@@ -60,16 +56,16 @@ class JobController extends Controller
     public function update(Job $job)
     {
         request()->validate([
-            'title' => ['required','min:3'],
-            'salary' => ['required']
+            'title' => ['required', 'min:3'],
+            'salary' => ['required'],
         ]);
 
         $job->update([
             'title' => request('title'),
-            'salary' => request('salary')
+            'salary' => request('salary'),
         ]);
 
-        return redirect('/jobs/' . $job->id);
+        return redirect('/jobs/'.$job->id);
     }
 
     public function destroy(Job $job)

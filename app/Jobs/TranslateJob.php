@@ -22,6 +22,6 @@ class TranslateJob implements ShouldQueue
      */
     public function handle(): void
     {
-        logger("perfect!");
+        logger('perfect!');
     }
 }
