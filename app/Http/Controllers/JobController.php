@@ -35,14 +35,14 @@ class JobController extends Controller
     public function store()
     {
         request()->validate([
-        'title' => ['required','min:3'],
-        'salary' => ['required']
+            'title' => ['required','min:3'],
+            'salary' => ['required']
         ]);
 
         $job = Job::create([
-        'title' => request('title'),
-        'salary' => request('salary'),
-        'employer_id' => 11
+            'title' => request('title'),
+            'salary' => request('salary'),
+            'employer_id' => 11
         ]);
 
         Mail::to($job->employer->user)->queue(
@@ -60,13 +60,13 @@ class JobController extends Controller
     public function update(Job $job)
     {
         request()->validate([
-        'title' => ['required','min:3'],
-        'salary' => ['required']
+            'title' => ['required','min:3'],
+            'salary' => ['required']
         ]);
 
         $job->update([
-        'title' => request('title'),
-        'salary' => request('salary')
+            'title' => request('title'),
+            'salary' => request('salary')
         ]);
 
         return redirect('/jobs/' . $job->id);
