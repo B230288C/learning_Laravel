@@ -23,7 +23,7 @@ class SessionController extends Controller
         if (! Auth::attempt($attributes)) {
             throw ValidationException::withMessages([
                 'email' => 'Credentials do not match.'
-            ])
+            ]);
         }
 
         request()->session()->regenerate();
